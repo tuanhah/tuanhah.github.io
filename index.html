@@ -1174,17 +1174,21 @@
                             <div class="col-lg-4 offset-lg-1">
                                 <div class="gap-6x d-none d-lg-block"></div>
                                 <div class="gap-4x d-none d-lg-block"></div>
-                                <form id="contact-form-01" class="contact-form nk-form-submit" action="form/contact.php" method="post">
+                                <form id="contact-form-01" class="contact-form nk-form-submit"  action='https://crm.zoho.com/crm/WebToContactForm' name=WebToContacts4854730000000313028 method='POST' accept-charset='UTF-8'>
+                                    <input type='text' style='display:none;' name='xnQsjsdp' value='8cf8d06c9b9d47883ab4b1bce7d7bf9f20ff20b06fbdff6c131c71fd43bf9f36'></input> 
+                                    <input type='hidden' name='zc_gad' id='zc_gad' value=''></input> 
+                                    <input type='text' style='display:none;' name='xmIwtLD' value='ced826d2c33fb3cbbaf51efe39e0094aff29da9ed994dd11ff912186e980e09e'></input> 
+                                    <input type='text'  style='display:none;' name='actionType' value='Q29udGFjdHM='></input>
+                                    <input type='text' style='display:none;' name='returnURL' value='https&#x3a;&#x2f;&#x2f;sofo.tech' > </input>
                                     <div class="field-item field-item-s2 animated" data-animate="fadeInUp" data-delay=".7">
-                                        <input name="contact-name" type="text" class="input-bordered required" placeholder="Your Name">
+                                        <input name="First Name" type="text" class="input-bordered required" placeholder="Your Name">
                                     </div>
                                     <div class="field-item field-item-s2 animated" data-animate="fadeInUp" data-delay=".8">
-                                        <input name="contact-email" type="email" class="input-bordered required email" placeholder="Your Email">
+                                        <input name="Email" type="email" ftype=email class="input-bordered required email" required placeholder="Your Email">
                                     </div>
                                     <div class="field-item field-item-s2 animated" data-animate="fadeInUp" data-delay=".9">
-                                        <textarea name="contact-message" class="input-bordered input-textarea required" placeholder="Your Message"></textarea>
+                                        <textarea name="Description" class="input-bordered input-textarea required" required placeholder="Your Message"></textarea>
                                     </div>
-                                    <input type="text" class="d-none" name="form-anti-honeypot" value="">
                                     <div class="row">
                                         <div class="col-sm-12 animated" data-animate="fadeInUp" data-delay="1">
                                             <button type="submit" class="btn btn-s2 btn-md btn-grad">Submit</button>
@@ -1193,7 +1197,7 @@
                                             <div class="form-results"></div>
                                         </div>
                                     </div>
-                                </form>
+                                        <!-- Do not remove this --- Analytics Tracking code starts --><script id='wf_anal' src='https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=ced826d2c33fb3cbbaf51efe39e0094aff29da9ed994dd11ff912186e980e09egid8cf8d06c9b9d47883ab4b1bce7d7bf9f20ff20b06fbdff6c131c71fd43bf9f36gid5cf99212d7958dbcd176c761c6ce0a4d7e43e277bdc5d8b9c12010015418942cgid14f4ec16431e0686150daa43f3210513'></script><!-- Do not remove this --- Analytics Tracking code ends. --></form>
                             </div><!-- .col -->
                             <div class="col-lg-4 align-self-center">
                                 <div class="nk-block-img animated" data-animate="fadeInUp" data-delay="1.1">
@@ -1220,17 +1224,41 @@
                                 </div><!-- .col -->
                                 <div class="col-lg-6">
                                     <div class="gap-3x d-none d-lg-block"></div>
-                                    <form action="form/subscribe.php" class="nk-form-submit" method="post">
+                                    <form method="POST"
+                                    id="zcampaignOptinForm"
+                                    action="https://maillist-manage.com/weboptin.zc"
+                                    target="_zcSignup" class="validate" class="nk-form-submit">
                                         <div class="field-inline field-inline-s2 field-inline-s2-sm bg-white shadow-soft">
                                             <div class="field-wrap">
-                                                <input class="input-solid input-solid-md required email" type="text" name="contact-email" placeholder="Enter your email">
-                                                <input type="text" class="d-none" name="form-anti-honeypot" value="">
+                                                <input class="input-solid input-solid-md required email" type="text" name="CONTACT_EMAIL" placeholder="Enter your email">
+                                                <!-- <input type="text" class="d-none" name="form-anti-honeypot" value=""> -->
                                             </div>
                                             <div class="submit-wrap">
                                                 <button class="btn btn-md btn-secondary">Subscribe</button>
                                             </div>
                                         </div>
                                         <div class="form-results"></div>
+                                        <input type="hidden" id="fieldBorder" value="">
+					<input type="hidden" id="submitType" name="submitType" value="optinCustomView">
+					<input type="hidden" id="emailReportId" name="emailReportId" value="">
+					<input type="hidden" id="formType" name="formType" value="QuickForm">
+					<input type="hidden" name="zx" id="cmpZuid" value="12ca170a4">
+					<input type="hidden" name="zcvers" value="3.0">
+					<input type="hidden" name="oldListIds" id="allCheckedListIds" value="">
+					<input type="hidden" id="mode" name="mode" value="OptinCreateView">
+					<input type="hidden" id="zcld" name="zcld" value="1b2440e84a305df4">
+					<input type="hidden" id="zctd" name="zctd" value="">
+					<input type="hidden" id="document_domain" value="">
+					<input type="hidden" id="zc_Url" value="publ.maillist-manage.com">
+					<input type="hidden" id="new_optin_response_in" value="0">
+					<input type="hidden" id="duplicate_optin_response_in" value="0">
+					<input type="hidden" name="zc_trackCode" id="zc_trackCode" value="ZCFORMVIEW">
+					<input type="hidden" id="zc_formIx" name="zc_formIx" value="3z0b6337b3083bbfe5615279920f98411801ddfd4f97214fd5cfdfd6907ad4779c">
+					<input type="hidden" id="viewFrom" value="URL_ACTION">
+					<span style="display: none" id="dt_CONTACT_EMAIL">1,true,6,Contact Email,2</span>
+					<span style="display: none" id="dt_FIRSTNAME">1,false,1,First Name,2</span>
+					<span style="display: none" id="dt_LASTNAME">1,false,1,Last Name,2</span>
+                    <!-- end hidden -->
                                     </form>
                                 </div><!-- .col -->
                             </div>

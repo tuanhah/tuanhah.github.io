@@ -719,10 +719,12 @@ NioApp = function (NioApp, $, window, document) {
                     submitHandler: function(form) {
                     _result.slideUp(400);
                     $(form).ajaxSubmit({
-                        target: _result, dataType: 'json',
+                        target: _result,
+                        // dataType: 'json',
                         success: function(data) {
-                            var type = (data.result==='error') ? 'alert-danger' : 'alert-success';
-                            _result.removeClass( 'alert-danger alert-success' ).addClass( 'alert ' + type ).html(data.message).slideDown(400);
+                            // var type = (data.result==='error') ? 'alert-danger' : 'alert-success';
+                            var type = 'alert-success';
+                            _result.removeClass( 'alert-danger alert-success' ).addClass( 'alert ' + type ).html('Thanks!').slideDown(400);
                             if (data.result !== 'error') { $(form).clearForm().find('input').removeClass('input-focused'); }
                         }
                     });
