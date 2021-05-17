@@ -1,5 +1,5 @@
 /*!
- * Charts - ICOCrypto v1.9.0 by Softnio.
+ * Charts.
 **/
 NioApp = (function (NioApp, $, window) {
     "use strict";

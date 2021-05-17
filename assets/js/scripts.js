@@ -1,10 +1,10 @@
 
 /*!
- * ICOCrypto v1.9.2 by Softnio. 
+ * SOFO. 
 **/
 var NioApp = (function (jQ, win, doc){
     "use strict";
-    var NioApp = {AppInfo: {name: "ICOCrypto", package: "1.9.2", version: "1.0.4", author: "Softnio"} },
+    var NioApp = {AppInfo: {name: "SOFO", package: "1.9.2", version: "1.0.4", author: ""} },
         components = {docReady: [], docReadyDefer: [], winLoad: [], winLoadDefer: []};
 
     jQ(doc).ready(docReady);
@@ -170,6 +170,7 @@ NioApp = function (NioApp, $, window, document) {
         }
     };
 	NioApp.components.winLoad.push(NioApp.Util.browser);
+
 	
 	// HeaderSticky !Util @v1.0
 	NioApp.Util.headerSticky = function () {
