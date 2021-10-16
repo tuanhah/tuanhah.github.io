@@ -1,10 +1,10 @@
 
 /*!
- * SOFO. 
+ * Wife doge. 
 **/
 var NioApp = (function (jQ, win, doc){
     "use strict";
-    var NioApp = {AppInfo: {name: "SOFO", package: "1.9.2", version: "1.0.4", author: ""} },
+    var NioApp = {AppInfo: {name: "WifeDoge", package: "1.9.2", version: "1.0.4", author: ""} },
         components = {docReady: [], docReadyDefer: [], winLoad: [], winLoadDefer: []};
 
     jQ(doc).ready(docReady);

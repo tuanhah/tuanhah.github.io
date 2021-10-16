@@ -6,10 +6,10 @@ $mail = new PHPMailer();
 $emailTO = $emailBCC =  $emailCC = array(); $formEmail = '';
 
 ### Enter Your Sitename 
-$sitename = 'SOFO';
+$sitename = 'Wife Doge';
 
 ### Enter your email addresses: @required
-$emailTO[] = array( 'email' => 'info@sofo.tech', 'name' => 'Azmat' ); 
+$emailTO[] = array( 'email' => 'info@wife-doge.tech', 'name' => 'HA' ); 
 
 ### Enable bellow parameters & update your BCC email if require.
 //$emailBCC[] = array( 'email' => 'email@yoursite.com', 'name' => 'Your Name' );
@@ -41,8 +41,8 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST') {
 			 $mail->Host = 'smtp_host';
 			 $mail->Port = 465;
 			 $mail->SMTPAuth = true;
-			 $mail->Username = 'info@sofo.tech';
-			 $mail->Password = 'sofoisbest1';
+			 $mail->Username = 'info@wife-doge.tech';
+			 $mail->Password = 'smoemoe';
 
 			### Regular email configure
 			$mail->IsHTML(true);
@@ -73,7 +73,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			### Include Form Fields into Body Message
 			$bodymsg .= isset($cf_email) ? "Subscribe Email: $cf_email<br><br>" : '';
-			$bodymsg .= $_SERVER['HTTP_REFERER'] ? '<br>---<br><br>This email was sent from [SOFO]: ' . $_SERVER['HTTP_REFERER'] : '';
+			$bodymsg .= $_SERVER['HTTP_REFERER'] ? '<br>---<br><br>This email was sent from [WifeDoge]: ' . $_SERVER['HTTP_REFERER'] : '';
 			
 			// Mailing
 			$mail->MsgHTML( $bodymsg );
