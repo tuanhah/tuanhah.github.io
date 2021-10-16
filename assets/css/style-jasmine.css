@@ -6521,9 +6521,9 @@ ul.progress-info { display: flex; justify-content: space-between; }
   .header-container:not(.container) { padding: 0 25px; }
   .header-container-s1:not(.container) { padding: 0 25px; }
   .header-banner { min-height: 98px; }
-  .logo img { height: 40px; }
-  .logo-md img { height: 50px; }
-  .logo-lg img { height: 60px; } }
+  .logo img { height: 100px; }
+  .logo-md img { height: 100px; }
+  .logo-lg img { height: 100px; } }
 
 @media (min-width: 1200px) { .header-container:not(.container) { padding: 0 25px; }
   .header-container-s1:not(.container) { padding: 0 35px; } }
