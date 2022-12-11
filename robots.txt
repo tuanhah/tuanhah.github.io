@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://https://wife-doge.me/sitemap.xml
