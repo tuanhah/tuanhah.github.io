@@ -1,0 +1,38 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="step3Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9800;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB74D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="300" height="200" fill="url(#step3Gradient)" rx="15"/>
+  
+  <!-- Clock -->
+  <circle cx="100" cy="80" r="30" fill="white" opacity="0.9"/>
+  <circle cx="100" cy="80" r="25" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="100" y1="80" x2="100" y2="65" stroke="#FF9800" stroke-width="3" stroke-linecap="round"/>
+  <line x1="100" y1="80" x2="115" y2="80" stroke="#FF9800" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="100" cy="80" r="3" fill="#FF9800"/>
+  
+  <!-- Arrow pointing to TikTok -->
+  <path d="M140 80 L170 80" stroke="white" stroke-width="3" fill="none" marker-end="url(#arrowhead2)"/>
+  
+  <!-- TikTok symbol -->
+  <rect x="180" y="60" width="40" height="40" rx="8" fill="white" opacity="0.9"/>
+  <circle cx="190" cy="75" r="8" fill="#ff0050"/>
+  <circle cx="210" cy="75" r="8" fill="#00f2ea"/>
+  <circle cx="200" cy="85" r="8" fill="#ff0050"/>
+  
+  <!-- Success indicators -->
+  <circle cx="250" cy="70" r="8" fill="#4CAF50"/>
+  <path d="M246 70 L249 73 L254 67" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <text x="150" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Auto Publish</text>
+  
+  <defs>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="white"/>
+    </marker>
+  </defs>
+</svg>
