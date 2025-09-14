@@ -141,12 +141,22 @@ function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
+    // Create safe DOM structure to prevent XSS
+    const content = document.createElement('div');
+    content.className = 'notification-content';
+    
+    const messageSpan = document.createElement('span');
+    messageSpan.className = 'notification-message';
+    messageSpan.textContent = message; // Safe: uses textContent instead of innerHTML
+    
+    const closeButton = document.createElement('button');
+    closeButton.className = 'notification-close';
+    closeButton.innerHTML = '&times;';
+    closeButton.setAttribute('aria-label', 'Close notification');
+    
+    content.appendChild(messageSpan);
+    content.appendChild(closeButton);
+    notification.appendChild(content);
     
     // Add to page
     document.body.appendChild(notification);
