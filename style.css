@@ -618,6 +618,131 @@ img:not([src]) {
     opacity: 0;
 }
 
+/* CSS-based Icons and Illustrations */
+.text-logo {
+    font-size: 2rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.text-logo.footer {
+    font-size: 1.5rem;
+}
+
+.phone-mockup {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.phone-frame {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.phone-screen {
+    background: #1a1a1a;
+    border-radius: 15px;
+    padding: 20px;
+    aspect-ratio: 9/16;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-interface {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.app-header {
+    background: linear-gradient(135deg, #ff0050, #ff4081);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    flex: 1;
+}
+
+.video-card {
+    background: #ff0050;
+    border-radius: 8px;
+    opacity: 0.8;
+    animation: pulse 2s infinite;
+}
+
+.video-card:nth-child(2) {
+    background: #ff4081;
+    animation-delay: 0.5s;
+}
+
+.video-card:nth-child(3) {
+    background: #ff0050;
+    animation-delay: 1s;
+}
+
+.schedule-button {
+    background: linear-gradient(135deg, #ff0050, #ff4081);
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-top: auto;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.icon-schedule,
+.icon-upload,
+.icon-analytics,
+.icon-bulk,
+.icon-template,
+.icon-security {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.step-illustration {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.step-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.step-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.step-1 .step-icon { color: #4CAF50; }
+.step-2 .step-icon { color: #2196F3; }
+.step-3 .step-icon { color: #FF9800; }
+
 /* Notification System */
 .notification {
     position: fixed;
