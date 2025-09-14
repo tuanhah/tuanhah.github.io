@@ -110,7 +110,7 @@ document.querySelectorAll('a[href="#download"]').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
         // Here you would implement actual download logic
-        alert('App will be available soon on App Store and Google Play!');
+        showNotification('App will be available soon on App Store and Google Play!', 'info');
     });
 });
 
@@ -119,7 +119,7 @@ document.querySelectorAll('a[href="#demo"]').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
         // Here you would implement demo modal or redirect
-        alert('Demo will be available soon!');
+        showNotification('Demo will be available soon!', 'info');
     });
 });
 
@@ -128,9 +128,41 @@ document.querySelectorAll('.pricing-card .btn').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
         const plan = this.closest('.pricing-card').querySelector('h3').textContent;
-        alert(`Thank you for your interest in the ${plan} plan! We will contact you soon.`);
+        showNotification(`Thank you for your interest in the ${plan} plan! We will contact you soon.`, 'success');
     });
 });
+
+// Notification System
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-message">${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+    
+    // Close button functionality
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+        notification.remove();
+    });
+}
 
 // Mobile Menu Styles
 const style = document.createElement('style');
