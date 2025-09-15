@@ -146,6 +146,7 @@ app.get('/api/analytics', (_req: Request, res: Response) => {
 });
 
 // Error handling middleware
+// @ts-ignore
 app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
   console.error('Error:', err.message);
   console.error('Stack:', err.stack);

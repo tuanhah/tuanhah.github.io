@@ -4,68 +4,487 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TikTok Auto Scheduler - Automatically Schedule TikTok Videos</title>
-    <meta name="description" content="Automatically upload videos to TikTok on scheduled times. Save time and optimize your content strategy.">
-    <meta name="keywords" content="TikTok, video scheduler, content automation, social media marketing">
-    <meta property="og:title" content="TikTok Auto Scheduler - Automatically Schedule TikTok Videos">
-    <meta property="og:description" content="Save time and optimize your content strategy with our automatic TikTok video upload app.">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:;">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Simple and secure application to automatically schedule and post TikTok videos. Safe, secure and easy to use.">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fe2c55;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: #fe2c55;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: #1a1a1a;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff0050, #ff4081);
+            border-radius: 20px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .app-interface {
+            text-align: center;
+        }
+        
+        .app-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .video-card {
+            width: 60px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .video-card::before {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+        
+        .schedule-button {
+            background: rgba(255,255,255,0.9);
+            color: #ff0050;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #fe2c55;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e91e63;
+        }
+        
+        .features {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            background: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 44, 85, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(45deg, #fe2c55, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .security-notice {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .security-notice h3 {
+            color: #155724;
+            margin-bottom: 1rem;
+        }
+        
+        .security-notice p {
+            color: #155724;
+            margin-bottom: 0.5rem;
+        }
+        
+        .legal-section {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+        
+        .legal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .legal-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .legal-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .legal-card ul {
+            list-style-position: inside;
+            color: #666;
+        }
+        
+        .legal-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+        
+        .warning-box p {
+            color: #856404;
+        }
+        
+        .steps-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 4rem 0;
+            color: white;
+        }
+        
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .step-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: white;
+            color: #f5576c;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+        .floating-element:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 2s; }
+        .floating-element:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 3s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
+            
+            .legal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <header>
         <div class="container">
-            <div class="nav-brand">
-                <div class="text-logo">🎥</div>
-                <span class="brand-name">TikTok Auto Scheduler</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                <li><a href="terms-of-service.html">Terms of Service</a></li>
-            </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="header-content">
+                <div class="logo">🎬 TikTok Auto Scheduler</div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="#legal">Terms</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Automatically Schedule and Post TikTok Videos</h1>
-                    <p>Save time and optimize your content strategy with our automatic TikTok video upload app. Schedule in advance, post automatically!</p>
-                    <div class="hero-buttons">
-                        <a href="#download" class="btn btn-primary">Download App</a>
-                        <a href="#demo" class="btn btn-secondary">View Demo</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="phone-mockup">
-                        <div class="phone-frame">
-                            <div class="phone-screen">
-                                <div class="app-interface">
-                                    <div class="app-header">TikTok Scheduler</div>
-                                    <div class="video-grid">
-                                        <div class="video-card"></div>
-                                        <div class="video-card"></div>
-                                        <div class="video-card"></div>
-                                    </div>
-                                    <div class="schedule-button">Schedule Video</div>
-                                </div>
+        <div class="floating-elements">
+            <div class="floating-element">📱</div>
+            <div class="floating-element">🎬</div>
+            <div class="floating-element">⏰</div>
+            <div class="floating-element">🚀</div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Automatically Schedule TikTok Videos</h1>
+                <p>Simple and secure application that helps you schedule and post TikTok videos automatically. Save time and optimize your content strategy.</p>
+                <a href="#features" class="btn">Learn More</a>
+            </div>
+            
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-interface">
+                            <div class="app-header">TikTok Scheduler</div>
+                            <div class="video-grid">
+                                <div class="video-card"></div>
+                                <div class="video-card"></div>
+                                <div class="video-card"></div>
+                                <div class="video-card"></div>
                             </div>
+                            <div class="schedule-button">📅 Schedule Video</div>
                         </div>
                     </div>
                 </div>
@@ -73,53 +492,40 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
-            <div class="section-header">
-                <h2>Key Features</h2>
-                <p>Powerful features to help you manage TikTok content effectively</p>
+            <h2 class="section-title">Key Features</h2>
+            
+            <div class="security-notice">
+                <h3>🔒 Security Commitment</h3>
+                <p><strong>We NEVER ask for:</strong></p>
+                <p>🚫 Your TikTok password</p>
+                <p>💳 Credit card information via email</p>
+                <p>⬇️ Downloading software from unknown sources</p>
+                <p>💬 Sharing personal information via messages</p>
             </div>
+            
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-schedule">📅</div>
-                    </div>
+                    <div class="feature-icon">📅</div>
                     <h3>Smart Scheduling</h3>
-                    <p>Schedule video posts by specific date and time. Automatically detect optimal times to increase engagement.</p>
+                    <p>Schedule video posts for specific times. Automatically detect optimal times to increase engagement.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-upload">⬆️</div>
-                    </div>
-                    <h3>Automatic Upload</h3>
-                    <p>Automatically upload videos with captions, hashtags, and audio according to pre-set templates.</p>
+                    <div class="feature-icon">⬆️</div>
+                    <h3>Auto Posting</h3>
+                    <p>Automatically post videos with captions and hashtags using pre-built templates at scheduled times.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-analytics">📊</div>
-                    </div>
+                    <div class="feature-icon">📊</div>
                     <h3>Performance Analytics</h3>
-                    <p>Track video performance, analyze views, likes, and comments to optimize your content strategy.</p>
+                    <p>Track video performance, analyze views, likes and comments to optimize your strategy.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-bulk">📁</div>
-                    </div>
-                    <h3>Bulk Upload</h3>
-                    <p>Upload and schedule multiple videos at once. Manage your content library easily and efficiently.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-template">📝</div>
-                    </div>
-                    <h3>Ready-Made Templates</h3>
-                    <p>Use pre-built caption and hashtag templates by topic to increase reach effectiveness.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-security">🔒</div>
-                    </div>
+                    <div class="feature-icon">🔒</div>
                     <h3>High Security</h3>
                     <p>Encrypt account information and ensure absolute security for your personal data.</p>
                 </div>
@@ -127,158 +533,111 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
+    <section class="steps-section">
         <div class="container">
-            <div class="section-header">
-                <h2>How It Works</h2>
-                <p>With just 3 simple steps, you can automate TikTok video posting</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3>Connect Account</h3>
-                        <p>Link your TikTok account securely and safely</p>
-                        <div class="step-illustration step-1">
-                            <div class="step-icon">🔗</div>
-                            <div class="step-text">Connect</div>
-                        </div>
-                    </div>
+            <h2 class="section-title">How It Works</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">Get started in just 3 simple steps</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>🔗 Connect Account</h3>
+                    <p>Securely link your TikTok account using OAuth authentication. Your password stays safe with TikTok.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3>Upload and Schedule</h3>
-                        <p>Upload videos, set captions, hashtags, and choose posting times</p>
-                        <div class="step-illustration step-2">
-                            <div class="step-icon">📅</div>
-                            <div class="step-text">Schedule</div>
-                        </div>
-                    </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>📤 Upload & Schedule</h3>
+                    <p>Upload your videos, add captions and hashtags, then choose the perfect time to post for maximum engagement.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3>Auto Publish</h3>
-                        <p>System automatically posts videos at scheduled times</p>
-                        <div class="step-illustration step-3">
-                            <div class="step-icon">✨</div>
-                            <div class="step-text">Auto Post</div>
-                        </div>
-                    </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>🚀 Auto Publish</h3>
+                    <p>Sit back and relax! Our system will automatically post your videos at the scheduled times.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
+    <section id="security" class="legal-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Pricing Plans</h2>
-                <p>Choose the plan that fits your needs</p>
+            <h2 class="section-title">Security Warning</h2>
+            
+            <div class="warning-box">
+                <h4>⚠️ Important security notice</h4>
+                <p>To avoid fraudulent websites, always check the official website address. We commit to never request sensitive information via email or messages.</p>
             </div>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <h3>Free</h3>
-                    <div class="price">
-                        <span class="amount">$0</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <ul class="features-list">
-                        <li>5 videos/month</li>
-                        <li>Basic scheduling</li>
-                        <li>Email support</li>
+            
+            <div class="security-notice">
+                <h3>🛡️ Our security measures:</h3>
+                <p>🔐 Use SSL/TLS encrypted connections</p>
+                <p>🚫 Do not store user passwords</p>
+                <p>🔑 Two-factor authentication (2FA)</p>
+                <p>🔍 Regular security audits</p>
+                <p>✅ Comply with international security standards</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="legal" class="legal-section">
+        <div class="container">
+            <h2 class="section-title">Terms & Policies</h2>
+            
+            <div class="legal-grid">
+                <div class="legal-card">
+                    <h3>📋 Terms of Service</h3>
+                    <ul>
+                        <li>Use the service legally and responsibly</li>
+                        <li>Do not use for spam or violating content</li>
+                        <li>Comply with TikTok's regulations</li>
+                        <li>Do not share accounts with others</li>
+                        <li>Report immediately if suspicious activity is detected</li>
                     </ul>
-                    <a href="#" class="btn btn-outline">Start Free</a>
                 </div>
-                <div class="pricing-card featured">
-                    <div class="popular-badge">Popular</div>
-                    <h3>Pro</h3>
-                    <div class="price">
-                        <span class="amount">$29</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <ul class="features-list">
-                        <li>100 videos/month</li>
-                        <li>Smart scheduling</li>
-                        <li>Detailed analytics</li>
-                        <li>Pre-built templates</li>
-                        <li>24/7 support</li>
+                
+                <div class="legal-card">
+                    <h3>🔐 Privacy Policy</h3>
+                    <ul>
+                        <li>Collect minimum necessary information</li>
+                        <li>Encrypt all sensitive data</li>
+                        <li>Do not sell information to third parties</li>
+                        <li>Allow users to delete data</li>
+                        <li>Comply with GDPR and data protection laws</li>
                     </ul>
-                    <a href="#" class="btn btn-primary">Choose Pro</a>
                 </div>
-                <div class="pricing-card">
-                    <h3>Enterprise</h3>
-                    <div class="price">
-                        <span class="amount">$99</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <ul class="features-list">
-                        <li>Unlimited videos</li>
-                        <li>Multiple accounts</li>
-                        <li>API access</li>
-                        <li>Custom templates</li>
-                        <li>Dedicated support</li>
+                
+                <div class="legal-card">
+                    <h3>⚖️ Legal Responsibility</h3>
+                    <ul>
+                        <li>Users are responsible for posted content</li>
+                        <li>We are not responsible for violating content</li>
+                        <li>Right to suspend violating accounts</li>
+                        <li>Comply with legal requirements from authorities</li>
+                        <li>Update terms when legal changes occur</li>
                     </ul>
-                    <a href="#" class="btn btn-outline">Contact Us</a>
+                </div>
+                
+                <div class="legal-card">
+                    <h3>📞 Customer Support</h3>
+                    <ul>
+                        <li>Support via official email</li>
+                        <li>Response time within 24 hours</li>
+                        <li>Detailed usage instructions</li>
+                        <li>FAQ for common questions</li>
+                        <li>Security incident reporting hotline</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
+    <footer id="contact">
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Automate Your TikTok Content?</h2>
-                <p>Join thousands of creators already using TikTok Auto Scheduler</p>
-                <a href="#download" class="btn btn-primary btn-large">Download Free App</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-brand">
-                        <div class="text-logo footer">🎥</div>
-                        <p>Automate TikTok video posting, save time and optimize content effectiveness.</p>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#demo">Demo</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">User Guide</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 TikTok Auto Scheduler. All rights reserved.</p>
-            </div>
+            <p>🎬 &copy; 2024 TikTok Auto Scheduler. All rights reserved.</p>
+            <p>📧 Official Email: support@tiktokscheduler.com | 🌐 Website: tiktokupvid.shop</p>
+            <p><strong>⚠️ Note:</strong> Always verify official email and website addresses before providing information</p>
         </div>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>

@@ -69,10 +69,27 @@ document.querySelectorAll('.feature-card, .step, .pricing-card').forEach(el => {
     observer.observe(el);
 });
 
-// Form Validation (if forms are added later)
+// Secure Form Validation with Input Sanitization
 function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (typeof email !== 'string') return false;
+    
+    // Sanitize input - remove potentially dangerous characters
+    email = email.trim().toLowerCase();
+    if (email.length > 254) return false; // RFC 5321 limit
+    
+    // Enhanced email validation regex
+    const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     return re.test(email);
+}
+
+// Secure input sanitization function
+function sanitizeInput(input) {
+    if (typeof input !== 'string') return '';
+    
+    return input
+        .trim()
+        .replace(/[<>\"'&]/g, '') // Remove potential XSS characters
+        .substring(0, 1000); // Limit length
 }
 
 // Counter Animation for Statistics (can be used later)
@@ -132,27 +149,42 @@ document.querySelectorAll('.pricing-card .btn').forEach(button => {
     });
 });
 
-// Notification System
+// Secure Notification System - XSS Prevention
 function showNotification(message, type = 'info') {
+    // Sanitize inputs
+    if (typeof message !== 'string' || typeof type !== 'string') {
+        console.error('Invalid notification parameters');
+        return;
+    }
+    
+    // Allowed types for security
+    const allowedTypes = ['info', 'success', 'warning', 'error'];
+    if (!allowedTypes.includes(type)) {
+        type = 'info';
+    }
+    
     // Remove existing notifications
     const existingNotifications = document.querySelectorAll('.notification');
     existingNotifications.forEach(notification => notification.remove());
     
-    // Create notification element
+    // Create notification element using secure methods
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
+    
     // Create safe DOM structure to prevent XSS
     const content = document.createElement('div');
     content.className = 'notification-content';
     
     const messageSpan = document.createElement('span');
     messageSpan.className = 'notification-message';
-    messageSpan.textContent = message; // Safe: uses textContent instead of innerHTML
+    // Security: Use textContent to prevent XSS, never innerHTML
+    messageSpan.textContent = String(message).substring(0, 200); // Limit message length
     
     const closeButton = document.createElement('button');
     closeButton.className = 'notification-close';
-    closeButton.innerHTML = '&times;';
+    closeButton.textContent = '×'; // Safe: using textContent instead of innerHTML
     closeButton.setAttribute('aria-label', 'Close notification');
+    closeButton.setAttribute('type', 'button');
     
     content.appendChild(messageSpan);
     content.appendChild(closeButton);
@@ -162,14 +194,16 @@ function showNotification(message, type = 'info') {
     document.body.appendChild(notification);
     
     // Auto remove after 5 seconds
-    setTimeout(() => {
+    const autoRemoveTimer = setTimeout(() => {
         if (notification.parentNode) {
             notification.remove();
         }
     }, 5000);
     
-    // Close button functionality
-    notification.querySelector('.notification-close').addEventListener('click', () => {
+    // Close button functionality with event delegation for security
+    closeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        clearTimeout(autoRemoveTimer);
         notification.remove();
     });
 }

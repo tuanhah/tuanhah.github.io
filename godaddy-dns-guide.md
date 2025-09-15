@@ -17,7 +17,8 @@
 |------|------|-------|-----|
 | A | @ | `YOUR_EC2_IP` | 600 |
 | A | www | `YOUR_EC2_IP` | 600 |
-| CNAME | * | `your-domain.com` | 600 |
+| A | * | `YOUR_EC2_IP` | 600 |
+| TXT | @ | `tiktok-developers-site-verification=p3FnrLtkMp5BLZ3Sul0FiSrICW3EDOf3` | 600 |
 
 ### 📋 **Ví dụ cụ thể:**
 ```
@@ -31,11 +32,54 @@ Name: www
 Value: 13.123.45.67
 TTL: 600 seconds
 
-Type: CNAME
+Type: A
 Name: *
-Value: your-domain.com
+Value: 13.123.45.67
+TTL: 600 seconds
+
+Type: TXT
+Name: @
+Value: tiktok-developers-site-verification=p3FnrLtkMp5BLZ3Sul0FiSrICW3EDOf3
 TTL: 600 seconds
 ```
+
+### ⚠️ **Lưu ý quan trọng về Wildcard Records:**
+
+**GoDaddy không cho phép CNAME với name `*` vì:**
+- CNAME không thể trỏ đến IP address
+- CNAME phải trỏ đến domain name
+- Wildcard CNAME có thể conflict với A records
+
+**✅ Giải pháp đúng:**
+- Sử dụng **A record** với name `*` thay vì CNAME
+- Value là IP address của server (3.67.79.37)
+- Điều này sẽ handle tất cả subdomain như: api.domain.com, app.domain.com, etc.
+
+## 🎯 **Bước đặc biệt: TikTok Domain Verification**
+
+### 📱 **Để xác minh domain với TikTok:**
+
+1. **Thêm TXT Record cho TikTok:**
+   ```
+   Type: TXT
+   Name: @
+   Value: tiktok-developers-site-verification=p3FnrLtkMp5BLZ3Sul0FiSrICW3EDOf3
+   TTL: 600 seconds
+   ```
+
+2. **Các bước thực hiện trên GoDaddy:**
+   - Vào DNS Management của domain `tiktokupvid.shop`
+   - Click "Add Record"
+   - Chọn Type: **TXT**
+   - Name: **@** (hoặc để trống)
+   - Value: **tiktok-developers-site-verification=p3FnrLtkMp5BLZ3Sul0FiSrICW3EDOf3**
+   - TTL: **600** seconds
+   - Click "Save"
+
+3. **Xác minh:**
+   - Đợi 15-30 phút để DNS propagate
+   - Quay lại TikTok để verify domain
+   - Kiểm tra bằng lệnh: `dig TXT tiktokupvid.shop`
 
 ## Bước 3: Cập nhật Nginx Configuration
 
